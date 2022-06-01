@@ -1,0 +1,39 @@
+name: gitgitgadget generate config Action
+author: webstech
+description: >
+  This is a GitHub action for generating GitGitGadget style
+  config.  The input is a model configuration file.  It may be a
+  javascript file, typscript converted javascript file or a json file
+  (with a .json extension).  The output format may be commonJS,
+  javascript (typescript style) or json.  All three formats are supported for
+  subsequent loading by the gitgitgadget utilities.  Existing values in the
+  config will be changed by environment variables that match the existing
+  config values.
+
+inputs:
+  format:
+    description: >
+      The format of the output file.  The output format may be commonJS,
+      javascript (typescript style) or json.  All three formats are supported for
+      subsequent loading by the gitgitgadget utilities.  Valid values are `common`,
+      `ts` or `json`.
+    required: false
+    default: 'common'
+  file:
+    description: The name of the output configuration file.
+    required: true
+  config:
+    description: Model JSON configuration file.'
+    required: true
+
+outputs:
+  error-message:
+    description: 'Validation errors when using `workflow` dispatch.'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'target'
+  color: 'gray-dark'

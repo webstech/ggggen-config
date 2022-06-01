@@ -1,0 +1,64 @@
+{
+    "name": "ggggen-config",
+    "version": "0.5.0",
+    "private": true,
+    "description": "Action to support workflows using the gitgitgadget tooling",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "ncc build src/main.ts -t -d",
+        "compile": "tsc",
+        "format": "prettier --write '**/*.ts'",
+        "format-check": "prettier --check **/*.ts",
+        "ncc:run": "ncc run ./dist/index.js",
+        "test": "jest",
+        "build:readme": "docker run -it --rm --name readme-gen -v %cd%:/usr/src/app -w /usr/src/app -e DEBUG=true -e npm_package_version=%npm_package_version% node:18 npx --trace-warnings github-action-readme-generator@1.0.12",
+        "genconfig": "node build/src/genConfig.js",
+        "lint": "eslint --ignore-path .gitignore -c .eslintrc.js --ext .ts,.js \"{lib,test}/**/*.{ts,tsx,mjs,js}\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gitgitgadget/gitgitgadget-pr-action.git"
+    },
+    "keywords": [
+        "slash",
+        "command",
+        "dispatch"
+    ],
+    "author": "Chris. Webster <chris@webstech.net> (https://www.webstech.com/)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/gitgitgadget/gitgitgadget-pr-action/issues"
+    },
+    "homepage": "https://github.com/gitgitgadget/gitgitgadget-pr-action#readme",
+    "devDependencies": {
+        "@types/node": "^17.0.36",
+        "@typescript-eslint/eslint-plugin": "^5.27.0",
+        "@typescript-eslint/parser": "^5.27.0",
+        "@vercel/ncc": "^0.34.0",
+        "eslint": "^8.16.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-anti-trojan-source": "^1.1.0",
+        "eslint-plugin-github": "^4.3.6",
+        "gitgitgadget": "file:../gitgitgadget/gitgitgadget-1.0.0.tgz",
+        "jest": "^28.1.0",
+        "prettier": "^2.6.2",
+        "ts-jest": "^28.0.3",
+        "typescript": "^4.7.2"
+    },
+    "dependencies": {
+        "@actions/core": "^1.8.2"
+    },
+    "engines": {
+        "node": ">= 16.0.0"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+          "ts",
+          "js"
+        ],
+        "transform": {
+          "\\.(ts|tsx)$": "ts-jest"
+        },
+        "testRegex": "/tests/.*\\.test\\.(ts|tsx|js)$"
+    }
+}
