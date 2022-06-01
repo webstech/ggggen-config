@@ -21,7 +21,7 @@ async function run(): Promise<void> {
     core.debug(`Inputs: ${inspect(inputs)}`);
 
     // Check required inputs
-    if (!inputs.format || ["common", "ts", "json"].includes(inputs.format)) {
+    if (!inputs.format || !["common", "ts", "json"].includes(inputs.format)) {
       throw new Error(`Missing or invalid required input 'format'.`);
     }
 

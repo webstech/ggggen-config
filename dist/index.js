@@ -2128,7 +2128,7 @@ async function run() {
         };
         core.debug(`Inputs: ${(0, util_1.inspect)(inputs)}`);
         // Check required inputs
-        if (!inputs.format || ["common", "ts", "json"].includes(inputs.format)) {
+        if (!inputs.format || !["common", "ts", "json"].includes(inputs.format)) {
             throw new Error(`Missing or invalid required input 'format'.`);
         }
         const format = inputs.format;
